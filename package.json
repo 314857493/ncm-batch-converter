@@ -1,0 +1,20 @@
+{
+  "name": "ncm-batch-converter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local batch NCM to MP3 converter",
+  "license": "MIT",
+  "keywords": ["ncm", "mp3", "netease-cloud-music", "audio-converter"],
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js --open",
+    "dev": "node --watch server.js",
+    "test": "node --test test/ncm.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ffmpeg-static": "^5.2.0"
+  }
+}

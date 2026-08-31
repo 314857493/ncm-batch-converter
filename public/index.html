@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>NCM Batch — 批量转 MP3</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="NCM Batch 首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" role="img"><path d="M8.5 9.5v13M23.5 8v12.5M8.5 12.5l15-4.5M8.5 19l15-4.5"/><circle cx="5.5" cy="23.5" r="3"/><circle cx="20.5" cy="21.5" r="3"/></svg>
+          </span>
+          <span>NCM <em>BATCH</em></span>
+        </a>
+        <div class="local-badge"><span></span> 本地处理 · 文件不上传云端</div>
+      </header>
+
+      <section class="hero">
+        <div class="eyebrow"><span>01</span> PRIVATE AUDIO TOOL</div>
+        <h1>把歌带回来，<br /><strong>一次全部转好。</strong></h1>
+        <p>批量解密 NCM，并将 MP3 / FLAC 音源统一输出为 MP3。<br />无账号、无云端、无文件数量限制。</p>
+      </section>
+
+      <section class="workspace" aria-label="转换工作区">
+        <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-label="选择或拖入 NCM 文件">
+          <input id="fileInput" type="file" accept=".ncm" multiple hidden />
+          <div class="drop-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48"><path d="M24 7v23M15 21l9 9 9-9"/><path d="M9 34v5h30v-5"/></svg>
+          </div>
+          <div>
+            <h2>拖入你的 NCM 文件</h2>
+            <p>支持多选，也可以拖入整批文件</p>
+          </div>
+          <button class="button button-primary" id="pickButton" type="button">选择文件 <span>↗</span></button>
+        </div>
+
+        <aside class="settings-card">
+          <div class="settings-title"><span>输出设置</span><span class="step">02</span></div>
+          <label class="field-label" for="bitrate">MP3 音质</label>
+          <div class="select-wrap">
+            <select id="bitrate">
+              <option value="320k" selected>320 kbps · 极高品质</option>
+              <option value="256k">256 kbps · 高品质</option>
+              <option value="192k">192 kbps · 标准品质</option>
+            </select>
+          </div>
+          <label class="field-label">保存位置</label>
+          <button class="folder-button" id="folderButton" type="button">
+            <span class="folder-icon">⌑</span>
+            <span><b id="folderName">正在读取…</b><small id="folderHint">转换结果会直接保存到这里</small></span>
+            <span>›</span>
+          </button>
+          <label class="consent">
+            <input id="rightsCheck" type="checkbox" checked />
+            <span>我只转换本人合法下载和拥有使用权的文件</span>
+          </label>
+        </aside>
+      </section>
+
+      <section class="queue-card" id="queueCard">
+        <div class="queue-head">
+          <div>
+            <div class="eyebrow"><span>03</span> CONVERSION QUEUE</div>
+            <h2>转换队列 <small id="fileCount">0 个文件</small></h2>
+          </div>
+          <div class="queue-actions">
+            <button class="text-button" id="clearButton" type="button">清空</button>
+            <button class="button button-ghost" id="openFolderButton" type="button" disabled>打开输出目录</button>
+            <button class="button button-primary" id="startButton" type="button" disabled>开始转换 <span>→</span></button>
+          </div>
+        </div>
+        <div class="empty-state" id="emptyState">
+          <div class="empty-lines"><i></i><i></i><i></i></div>
+          <p>还没有文件，拖入一批 NCM 开始吧</p>
+        </div>
+        <div class="job-list" id="jobList" aria-live="polite"></div>
+      </section>
+
+      <footer>
+        <span>NCM BATCH CONVERTER</span>
+        <span>LOCALHOST / 127.0.0.1</span>
+        <span>仅供处理合法拥有的音频文件</span>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
